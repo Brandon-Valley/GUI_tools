@@ -15,7 +15,7 @@ import json
 
 
 # this file must remain a .pyw
-def run_func_in_tk_terminal(func, photo_img = None, parent_gui_pid_l_json_path = None):
+def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_path = None):
     
     # because I'm to lazy to add a submodule
     def is_dir(in_path):
@@ -105,18 +105,31 @@ def run_func_in_tk_terminal(func, photo_img = None, parent_gui_pid_l_json_path =
 #                         DbgText.Dbgtopwin=tkinter.Tk()
                         DbgText.Dbgtopwin=tkinter.Toplevel()
                         
-                        # set iconphoto if given a photo_img
-                        if photo_img != None:
+                        # set icon if given path
+                        if photo_img_path != None:
                             # sets tool bar icon to be the same as iconphoto
-                            myappid = 'mycompany.myproduct.subproduct.version2' # arbitrary string
+                            myappid = 'mycompany.myproduct.subproduct.version3' # arbitrary string
                             ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
                             
-#         #                     photo_img_rel_path = "imgs/git.png"
-#         #                     photo_img_abs_path = os.path.dirname(os.path.abspath(__file__)) + '//' + photo_img_rel_path
-#                             photo_img_abs_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
-#                             pi = PhotoImage(file = photo_img_abs_path)
+                            # sets iconphoto
+                            photo_img = PhotoImage(file = photo_img_path)
                             DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
-#                             DbgText.Dbgtopwin.iconphoto(canvas, photo_img)
+                        
+                        
+                        
+                        
+                        # set iconphoto if given a photo_img
+#                         if photo_img != None:
+#                             # sets tool bar icon to be the same as iconphoto
+#                             myappid = 'mycompany.myproduct.subproduct.version2' # arbitrary string
+#                             ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+#                             
+# #         #                     photo_img_rel_path = "imgs/git.png"
+# #         #                     photo_img_abs_path = os.path.dirname(os.path.abspath(__file__)) + '//' + photo_img_rel_path
+# #                             photo_img_abs_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
+# #                             pi = PhotoImage(file = photo_img_abs_path)
+#                             DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
+# #                             DbgText.Dbgtopwin.iconphoto(canvas, photo_img)
                         
 #                         DbgText.Dbgtopwin.iconphoto()
                         

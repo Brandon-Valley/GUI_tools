@@ -68,9 +68,9 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             func_return_l.append(func_return)
 
 
-
-    
-    root = Toplevel() # highest level GUI must always use TK(), not Toplevel(), PhotoImage can only work after TK(), but if this has already been called in a higher level GUI, use Toplevel()
+    # highest level GUI must always use TK(), not Toplevel(), PhotoImage can only work after TK(), but if this has already been called in a higher level GUI, use Toplevel()
+    # running with Toplevel as your root GUI will also make a blank window appear
+    root = Toplevel() 
     
     # set icon if given path
     if photo_img_path != None:
