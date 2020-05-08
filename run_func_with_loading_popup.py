@@ -51,15 +51,21 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             # close the work thread
             self.work_thread.join()
 
+            print('in run_func_with_popup: about to destroy: ', func_return_l)
             
-            self.top.destroy()
+            
+            self.top.quit()
 #             # stop the indeterminate bouncing
 #             self.load_bar.stop()
 #             # reconfigure the bar so it appears reset
 #             self.load_bar.config(value=0, maximum=0)
      
         def work_task(self):
-            func_return_l.append(func())
+#             print('in run_func_with_popup: before func')
+            func_return = func()
+            print('in run_func_with_popup: after func: ', func_return)
+            
+            func_return_l.append(func_return)
 
 
 
@@ -78,7 +84,10 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     
     # call Main_Frame class with reference to root as top
     Main_Frame(root, window_title, bounce_speed, pb_length)
+    print('in run_func_with_popup: before mainloop')
     root.mainloop() 
+    root.destroy()
+    print('in run_func_with_popup: after mainloop func_return_l[0]: ', func_return_l[0])
     return func_return_l[0]
     
 if __name__ == '__main__':
