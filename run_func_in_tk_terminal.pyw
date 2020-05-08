@@ -1,9 +1,68 @@
 import tkinter
 import sys,string
 
+import os
+import json
+
+
+
 
 
 def run_func_in_tk_terminal(func, parent_gui_pid_l_json_path = None):
+    
+    # because I'm to lazy to add a submodule
+    def is_dir(in_path):
+        return os.path.isdir(in_path)
+
+    def is_file(in_path):
+        return os.path.isfile(in_path)
+    
+    def get_parent_dir_path_from_path(path):
+        return os.path.dirname(path)
+    
+    def get_abs_path_from_rel_path(in_rel_path):
+        return os.path.abspath(in_rel_path)
+    
+    def make_dir_if_not_exist(dir_path):
+        abs_dir_path = get_abs_path_from_rel_path(dir_path)
+        if not os.path.exists(abs_dir_path):
+            os.makedirs(abs_dir_path)
+            
+    def make_file_if_not_exist(file_path):
+        if not is_file(file_path):
+            parent_dir_path = get_parent_dir_path_from_path(file_path)
+            make_dir_if_not_exist(parent_dir_path)
+            file = open(file_path, "w") 
+            file.close() 
+        
+    def json_write(data, output_file_path, indent = 4):
+        make_file_if_not_exist(output_file_path)
+         
+        with open(output_file_path, 'w') as outfile:  
+            json.dump(data, outfile, indent = indent)
+            outfile.close()  
+            
+    def json_read(json_file_path, return_if_file_not_found = "raise_exception"):    
+        try:
+            with open(json_file_path, "r") as read_file:
+                data = json.load(read_file)           
+            read_file.close()
+        except FileNotFoundError as e:
+            if return_if_file_not_found != "raise_exception":
+                return return_if_file_not_found
+            else:
+                raise e
+            
+        return data
+    
+    
+    
+    
+    
+    
+    
+    
+    
     class DbgText:
         Dbgtopwin=None
         Dbgwidget=None
@@ -123,6 +182,13 @@ def run_func_in_tk_terminal(func, parent_gui_pid_l_json_path = None):
     Take_stdout()
     
 
+    if parent_gui_pid_l_json_path != None:
+        pid_l = json_read(parent_gui_pid_l_json_path, return_if_file_not_found = [])
+        print(pid_l)
+        pid_l.append(os.getpid())
+        print(pid_l)
+        json_write(pid_l, parent_gui_pid_l_json_path)
+    
     func()
 
 #     print('')

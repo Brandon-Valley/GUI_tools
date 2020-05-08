@@ -1,0 +1,3 @@
+[submodule "util_submodules/logger"]
+	path = util_submodules/logger
+	url = https://github.com/Brandon-Valley/logger.git
