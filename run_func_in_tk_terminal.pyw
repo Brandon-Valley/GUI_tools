@@ -234,9 +234,9 @@ if __name__ == '__main__':
     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_3"
     repo_remote_url = 'https://ba-bit.web.boeing.com/scm/mnfcf/tsm15.git'
     
-    photo_img = PhotoImage(file = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png")
+#     photo_img = PhotoImage(file = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png")
     #     subprocess.call('setup_new_repo.py', shell = True)
-    run_func_in_tk_terminal(lambda: setup_new_repo.setup_new_repo(repo_type, local_ip_repo_dir_path, repo_remote_url, photo_img ))
+    run_func_in_tk_terminal(lambda: setup_new_repo.setup_new_repo(repo_type, local_ip_repo_dir_path, repo_remote_url), photo_img = None)
     
     
     
