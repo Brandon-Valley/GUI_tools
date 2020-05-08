@@ -1,23 +1,25 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import threading
-import time
+import ctypes
 
 
 # the given message with a bouncing progress bar will appear for as long as func is running, returns same as if func was run normally
 # a pb_length of None will result in the progress bar filling the window whose width is set by the length of msg
-# Ex:  run_func_with_loading_popup(lambda: task('joe'), photo_img)  
-def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8, pb_length = None):
+# Ex:  run_func_with_loading_popup(lambda: task('joe'), photo_img_path)  
+def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8, pb_length = None, photo_img_path = None):
     func_return_l = []
  
     class Main_Frame(object):
-        def __init__(self, top, window_title, title, bounce_speed):
-            print('top of Main_Frame')
+        def __init__(self, top, window_title, bounce_speed, pb_length):
             self.func = func
             # save root reference
             self.top = top
             # set title bar
             self.top.title(window_title)
+            
+            self.bounce_speed = bounce_speed
+            self.pb_length = pb_length
       
             self.msg_lbl = Label(top, text=msg)
             self.msg_lbl.pack(padx = 10, pady = 5)
@@ -38,9 +40,9 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
      
         def start_bar(self):
             # the load_bar needs to be configured for indeterminate amount of bouncing
-            self.load_bar.config(mode='indeterminate', maximum=100, value=0, length = pb_length)
+            self.load_bar.config(mode='indeterminate', maximum=100, value=0, length = self.pb_length)
             # 8 here is for speed of bounce
-            self.load_bar.start(bounce_speed)            
+            self.load_bar.start(self.bounce_speed)            
 #             self.load_bar.start(8)            
             
             self.work_thread = threading.Thread(target=self.work_task, args=())
@@ -60,8 +62,19 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             func_return_l.append(func())
 
 
-    # create root window
-    root = Tk()
+
+    
+    root = Toplevel() # highest level GUI must always use TK(), not Toplevel(), PhotoImage can only work after TK(), but if this has already been called in a higher level GUI, use Toplevel()
+    
+    # set icon if given path
+    if photo_img_path != None:
+        # sets tool bar icon to be the same as iconphoto
+        myappid = 'mycompany.myproduct.subproduct.version3' # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        
+        # sets iconphoto
+        photo_img = PhotoImage(file = photo_img_path)
+        root.iconphoto(root, photo_img)
     
     # call Main_Frame class with reference to root as top
     Main_Frame(root, window_title, bounce_speed, pb_length)
@@ -79,11 +92,12 @@ if __name__ == '__main__':
         
     msg = 'running func...'        
         
-    bounc_speed = 10
+    bounc_speed = 9
     pb_length = 200
     window_title = "Wait"
+    photo_img_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
         
-    r = run_func_with_loading_popup(lambda: task('joe'), msg, window_title, bounc_speed, pb_length)
+    r = run_func_with_loading_popup(lambda: task('joe'), msg, window_title, bounc_speed, pb_length, photo_img_path)
 
     print('return of test: ', r)    
      
@@ -98,5 +112,4 @@ if __name__ == '__main__':
      
      
      
-     
-     
+    
