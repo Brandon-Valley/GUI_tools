@@ -1,5 +1,12 @@
 import tkinter
-import sys,string
+
+from tkinter.ttk import *
+from tkinter import *
+
+import sys
+import string
+import ctypes
+
 
 import os
 import json
@@ -7,8 +14,8 @@ import json
 
 
 
-
-def run_func_in_tk_terminal(func, parent_gui_pid_l_json_path = None):
+# this file must remain a .pyw
+def run_func_in_tk_terminal(func, photo_img = None, parent_gui_pid_l_json_path = None):
     
     # because I'm to lazy to add a submodule
     def is_dir(in_path):
@@ -95,13 +102,33 @@ def run_func_in_tk_terminal(func, parent_gui_pid_l_json_path = None):
             else:
                 if self.window == None:
                     if DbgText.Dbgtopwin == None:
-                        DbgText.Dbgtopwin=tkinter.Tk()
+#                         DbgText.Dbgtopwin=tkinter.Tk()
+                        DbgText.Dbgtopwin=tkinter.Toplevel()
+                        
+                        # set iconphoto if given a photo_img
+                        if photo_img != None:
+                            # sets tool bar icon to be the same as iconphoto
+                            myappid = 'mycompany.myproduct.subproduct.version2' # arbitrary string
+                            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+                            
+#         #                     photo_img_rel_path = "imgs/git.png"
+#         #                     photo_img_abs_path = os.path.dirname(os.path.abspath(__file__)) + '//' + photo_img_rel_path
+#                             photo_img_abs_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
+#                             pi = PhotoImage(file = photo_img_abs_path)
+                            DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
+#                             DbgText.Dbgtopwin.iconphoto(canvas, photo_img)
+                        
+#                         DbgText.Dbgtopwin.iconphoto()
+                        
                         DbgText.Dbgtopwin.protocol('WM_DELETE_WINDOW',Dbg_kill_topwin)
                         DbgText.Dbgwidget=tkinter.Text(DbgText.Dbgtopwin, background = "black", foreground = 'white')
                         DbgText.Dbgwidget.pack(expand=1)
                     top=DbgText.Dbgtopwin
                     wid=DbgText.Dbgwidget
                     
+                    
+                    
+
                     
                 else:
                     if self.widget == None:
@@ -178,38 +205,19 @@ def run_func_in_tk_terminal(func, parent_gui_pid_l_json_path = None):
     
             
     
-#     print('stdout is here')
+
     Take_stdout()
     
-
+    # track the PIDs of all processes so they can all be killed at once
     if parent_gui_pid_l_json_path != None:
         pid_l = json_read(parent_gui_pid_l_json_path, return_if_file_not_found = [])
-        print(pid_l)
         pid_l.append(os.getpid())
-        print(pid_l)
         json_write(pid_l, parent_gui_pid_l_json_path)
     
+    # depending on the function, you may never get past this func
     func()
 
-#     print('')
-#     Dbg_kill_topwin()
-#     repo_type = 'ip'
-#     # local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_2_CE4"
-#     #     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_2_CE4 - Copy (2)"
-#     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_3"
-#     repo_remote_url = 'https://ba-bit.web.boeing.com/scm/mnfcf/tsm15.git'
-# #     subprocess.call('setup_new_repo.py', shell = True)
-#     e = setup_new_repo.setup_new_repo(repo_type, local_ip_repo_dir_path, repo_remote_url, exit )
-#     if e != :
-#     exit()
-    print('here22222222222222')
-#     Dbg_kill_topwin()
     
-#     import time
-#     while(True):
-#         time.sleep(1)
-#         print('stdout should now be in window')
-#         print(' this is the second line')
     input()
     Restore_stdout()
     print('stdout back to original')
@@ -225,8 +233,10 @@ if __name__ == '__main__':
     #     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_2_CE4 - Copy (2)"
     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_3"
     repo_remote_url = 'https://ba-bit.web.boeing.com/scm/mnfcf/tsm15.git'
+    
+    photo_img = PhotoImage(file = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png")
     #     subprocess.call('setup_new_repo.py', shell = True)
-    run_func_in_tk_terminal(lambda: setup_new_repo.setup_new_repo__(repo_type, local_ip_repo_dir_path, repo_remote_url ))
+    run_func_in_tk_terminal(lambda: setup_new_repo.setup_new_repo(repo_type, local_ip_repo_dir_path, repo_remote_url, photo_img ))
     
     
     
