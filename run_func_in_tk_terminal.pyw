@@ -1,17 +1,15 @@
 import tkinter
-
 from tkinter.ttk import *
 from tkinter import *
 
 import sys
 import string
 import ctypes
-
-
 import os
 import json
 
 import GUI_tools_utils
+
 
 
 # this file must remain a .pyw
@@ -63,7 +61,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
         return data
     
     
-    
     class DbgText:
         Dbgtopwin=None
         Dbgwidget=None
@@ -111,13 +108,11 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
                             photo_img = PhotoImage(file = photo_img_path)
                             DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
                         
-                        
                         DbgText.Dbgtopwin.protocol('WM_DELETE_WINDOW',Dbg_kill_topwin)
                         DbgText.Dbgwidget=tkinter.Text(DbgText.Dbgtopwin, background = "black", foreground = 'white')
                         DbgText.Dbgwidget.pack(expand=1)
                     top=DbgText.Dbgtopwin
                     wid=DbgText.Dbgwidget
-                    
                     
                 else:
                     if self.widget == None:
@@ -157,7 +152,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
             f=DbgText('*')
             f.prev=sys.stderr
             sys.stderr=f
-    
         
     def Restore_stdout():
         f=sys.stdout
@@ -176,7 +170,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
         root.withdraw()
         DbgText.DbgRoot=root
     
-    
     def See():
         db=DbgText()
         if db.Dbgtopwin != None:
@@ -192,7 +185,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
         Restore_stdout()
         Restore_stderr()
     
-            
 
     Take_stdout()
     
@@ -207,6 +199,8 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
     
     Dbg_kill_topwin()
         
+    
+    
     
     
 if __name__ == '__main__':

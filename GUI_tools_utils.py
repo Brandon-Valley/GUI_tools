@@ -29,7 +29,6 @@ from tkinter import *
 
 
 
-
 # self.duration: 72 --> '1:12'
 def sec_to_min_str(total_sec):
     minutes = int(total_sec / 60)
@@ -95,6 +94,7 @@ def rel_path_to_this_file__to__abs_path__if_not_None(file_obj, rel_path):
     return os.path.dirname(os.path.abspath(file_obj)) + '//' + rel_path
         
         
+        
 ''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''
 '''                                                                           
         iconphoto and app_id:
@@ -107,8 +107,6 @@ def rel_path_to_this_file__to__abs_path__if_not_None(file_obj, rel_path):
         If both the iconphoto and app_id are set, these imgs will match.
 '''
 ''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''       
-    
-        
 
 def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar = True):
     '''
@@ -170,6 +168,7 @@ def set_child_tk_gui_iconphoto_and_app_id(master, photo_img_path, app_id):
     
     set_iconphoto_if_not_None(master, photo_img_path)
             
+    
     
     
     

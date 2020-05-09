@@ -6,6 +6,7 @@ import ctypes
 import GUI_tools_utils as gtu
 
 
+
 # the given message with a bouncing progress bar will appear for as long as func is running, returns same as if func was run normally
 # a pb_length of None will result in the progress bar filling the window whose width is set by the length of msg
 # Ex:  run_func_with_loading_popup(lambda: task('joe'), photo_img_path)  
@@ -36,6 +37,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
               
      
         def bar_init(self):
+            
             # first layer of isolation, note var being passed along to the self.start_bar function
             # target is the function being started on a new thread, so the "bar handler" thread
             self.start_bar_thread = threading.Thread(target=self.start_bar, args=())
@@ -44,18 +46,16 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             self.start_bar_thread.start()
      
         def start_bar(self):
+            
             # the load_bar needs to be configured for indeterminate amount of bouncing
             self.load_bar.config(mode='indeterminate', maximum=100, value=0, length = self.pb_length)
-            # 8 here is for speed of bounce
             self.load_bar.start(self.bounce_speed)            
-#             self.load_bar.start(8)            
             
             self.work_thread = threading.Thread(target=self.work_task, args=())
             self.work_thread.start()
             
             # close the work thread
             self.work_thread.join()
-            
             
             self.top.quit()
 #             # stop the indeterminate bouncing
@@ -64,10 +64,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
 #             self.load_bar.config(value=0, maximum=0)
      
         def work_task(self):
-#             print('in run_func_with_popup: before func')
-            func_return = func()
-#             print('in run_func_with_popup: after func: ', func_return)
-            
+            func_return = func()            
             func_return_l.append(func_return)
 
 
@@ -75,18 +72,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     # running with Toplevel as your root GUI will also make a blank window appear
     root = Toplevel() 
     
-    
     gtu.set_child_tk_gui_iconphoto_and_app_id(root, photo_img_path, app_id)
-    
-#     # set icon if given path
-#     if photo_img_path != None:
-#         # sets tool bar icon to be the same as iconphoto
-#         myappid = 'mycompany.myproduct.subproduct.version3' # arbitrary string
-#         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-#         
-#         # sets iconphoto
-#         photo_img = PhotoImage(file = photo_img_path)
-#         root.iconphoto(root, photo_img)
     
     # call Main_Frame class with reference to root as top
     Main_Frame(root, window_title, bounce_speed, pb_length)
