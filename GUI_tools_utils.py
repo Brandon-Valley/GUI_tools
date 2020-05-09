@@ -155,6 +155,22 @@ def set_iconphoto_if_not_None(master, img_path):
     photo_img = PhotoImage(file = img_path)
     master.iconphoto(master, photo_img)
     
+
+def set_child_tk_gui_iconphoto_and_app_id(master, photo_img_path, app_id):
+    '''
+        Parent GUI does not need to pass it's photo_img_path if it passes it's app_id
+    '''
+    
+    if photo_img_path != None:
+        eu.error_if_not_is_file(photo_img_path)
+    eu.error_if_param_type_not_in_whitelist(app_id, ['str', 'NoneType'])
+    
+    if app_id != None:
+        set_app_id(app_id)
+    
+    set_iconphoto_if_not_None(master, photo_img_path)
+            
+    
     
     
 ''' -- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -- All Utilities Standard Footer -- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -- '''
@@ -162,18 +178,12 @@ sys.modules = og_sys_modules
 ''' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ '''
 if __name__ == '__main__':    
     print('In Main:  GUI_tools_utils')
+    
+    
+    
+    
+    
+    
+    
+    
     print('End ofMain:  GUI_tools_utils')
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        
-        

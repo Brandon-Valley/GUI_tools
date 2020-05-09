@@ -3,11 +3,13 @@ import tkinter.ttk as ttk
 import threading
 import ctypes
 
+import GUI_tools_utils as gtu
+
 
 # the given message with a bouncing progress bar will appear for as long as func is running, returns same as if func was run normally
 # a pb_length of None will result in the progress bar filling the window whose width is set by the length of msg
 # Ex:  run_func_with_loading_popup(lambda: task('joe'), photo_img_path)  
-def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8, pb_length = None, photo_img_path = None):
+def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8, pb_length = None, photo_img_path = None, app_id = None):
     func_return_l = []
  
     class Main_Frame(object):
@@ -74,15 +76,17 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     root = Toplevel() 
     
     
-    # set icon if given path
-    if photo_img_path != None:
-        # sets tool bar icon to be the same as iconphoto
-        myappid = 'mycompany.myproduct.subproduct.version3' # arbitrary string
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-        
-        # sets iconphoto
-        photo_img = PhotoImage(file = photo_img_path)
-        root.iconphoto(root, photo_img)
+    gtu.set_child_tk_gui_iconphoto_and_app_id(root, photo_img_path, app_id)
+    
+#     # set icon if given path
+#     if photo_img_path != None:
+#         # sets tool bar icon to be the same as iconphoto
+#         myappid = 'mycompany.myproduct.subproduct.version3' # arbitrary string
+#         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+#         
+#         # sets iconphoto
+#         photo_img = PhotoImage(file = photo_img_path)
+#         root.iconphoto(root, photo_img)
     
     # call Main_Frame class with reference to root as top
     Main_Frame(root, window_title, bounce_speed, pb_length)
