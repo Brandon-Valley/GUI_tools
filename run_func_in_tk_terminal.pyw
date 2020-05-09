@@ -11,7 +11,7 @@ import ctypes
 import os
 import json
 
-
+import GUI_tools_utils
 
 
 # this file must remain a .pyw
@@ -104,6 +104,10 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
                     if DbgText.Dbgtopwin == None:
 #                         DbgText.Dbgtopwin=tkinter.Tk()
                         DbgText.Dbgtopwin=tkinter.Toplevel()
+                        
+#                         DbgText.Dbgtopwin.geometry("+0+720")
+                        
+                        GUI_tools_utils.center_window(DbgText.Dbgtopwin)
                         
                         # set icon if given path
                         if photo_img_path != None:
