@@ -72,6 +72,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     # running with Toplevel as your root GUI will also make a blank window appear
     root = Toplevel() 
     
+    
     # set icon if given path
     if photo_img_path != None:
         # sets tool bar icon to be the same as iconphoto
