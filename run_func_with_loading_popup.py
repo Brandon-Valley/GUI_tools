@@ -13,8 +13,10 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     class Main_Frame(object):
         def __init__(self, top, window_title, bounce_speed, pb_length):
             self.func = func
+            
             # save root reference
             self.top = top
+            
             # set title bar
             self.top.title(window_title)
             
@@ -35,6 +37,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             # first layer of isolation, note var being passed along to the self.start_bar function
             # target is the function being started on a new thread, so the "bar handler" thread
             self.start_bar_thread = threading.Thread(target=self.start_bar, args=())
+            
             # start the bar handling thread
             self.start_bar_thread.start()
      
@@ -50,8 +53,6 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             
             # close the work thread
             self.work_thread.join()
-
-#             print('in run_func_with_popup: about to destroy: ', func_return_l)
             
             
             self.top.quit()
@@ -88,6 +89,10 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     root.mainloop() 
     root.destroy()
     return func_return_l[0]
+    
+    
+    
+    
     
 if __name__ == '__main__':
     import time

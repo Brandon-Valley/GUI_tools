@@ -1,5 +1,6 @@
 import sys
 import os
+import ctypes
 
 # self.duration: 72 --> '1:12'
 def sec_to_min_str(total_sec):
@@ -51,10 +52,56 @@ def print_stderr(func):
         
     eprint(func())
         
+        
+        
+''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''
+'''                                                                           
+        iconphoto and app_id:
+        --------------------
+        
+        If the iconphoto is set but the app_id is not, the image in the top left of the
+        Gui window will change to iconphoto (default is tk feather), but the tool bar
+        image will not change.
+        
+        If both the iconphoto and app_id are set, these imgs will match.
+'''
+''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''       
+    
+        
 
-# gtu.get_app_id_unique_to_this_file(__file__)        
-def get_app_id_unique_to_this_file(file_obj):
-    return '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
+def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar = True):
+    '''
+        gtu.get_app_id_unique_to_this_file(__file__)       
+    
+        if 2 GUIs use the same iconphoto, but have different app_ids, they will show as 2 different applications in the tool bar,
+        if they use the same app_id, their application windows will stack in the tool bar 
+    '''
+    
+    if want_duplicate_apps_to_stack_in_toolbar:
+        return '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
+    else:
+        app_id = '_app_id__{}__{}__app_id_'.format(os.path.dirname(os.path.abspath(__file__)), os.getpid()) # arbitrary string
+    
+
+  
+def set_tool_bar_image_to_match_iconimage_if_exists(file_obj, want_duplicate_apps_to_stack_in_toolbar = True ):
+    '''
+        gtu.set_tool_bar_image_to_match_iconimage_if_exists(__file__, want_duplicate_apps_to_stack_in_toolbar = True)       
+    
+        If no iconphoto is set, all this does is set the app_id based on input.
+    '''  
+    
+    app_id = get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar)
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
