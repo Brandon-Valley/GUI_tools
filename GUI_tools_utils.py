@@ -53,6 +53,13 @@ def print_stderr(func):
     eprint(func())
         
         
+def rel_path_to_this_file__to__abs_path(file_obj, rel_path):
+    '''
+        gtu.rel_path_to_this_file__to__abs_path(__file__, '//imgs//git.png')       
+
+    '''
+    return os.path.dirname(os.path.abspath(file_obj)) + 'rel_path'
+        
         
 ''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''
 '''                                                                           
@@ -77,6 +84,8 @@ def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_too
         if they use the same app_id, their application windows will stack in the tool bar 
     '''
     
+    print(type(file_obj), '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    
     if want_duplicate_apps_to_stack_in_toolbar:
         return '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
     else:
@@ -90,7 +99,7 @@ def set_tool_bar_image_to_match_iconimage_if_exists(file_obj, want_duplicate_app
     
         If no iconphoto is set, all this does is set the app_id based on input.
     '''  
-    
+    print(type(file_obj), file_obj, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     app_id = get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar)
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
     
