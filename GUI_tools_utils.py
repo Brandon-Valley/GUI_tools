@@ -81,15 +81,18 @@ def print_stderr(func):
     eprint(func())
         
         
-def rel_path_to_this_file__to__abs_path(file_obj, rel_path):
+def rel_path_to_this_file__to__abs_path__if_not_None(file_obj, rel_path):
     '''
-        gtu.rel_path_to_this_file__to__abs_path(__file__, '//imgs//git.png')       
+        gtu.rel_path_to_this_file__to__abs_path(__file__, 'imgs//git.png')       
 
     '''
+    if rel_path == None:
+        return None
+    
     eu.error_if_not__file__(file_obj)
     eu.error_if_not_is_file(rel_path)
     
-    return os.path.dirname(os.path.abspath(file_obj)) + 'rel_path'
+    return os.path.dirname(os.path.abspath(file_obj)) + '//' + rel_path
         
         
 ''' VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV '''
@@ -123,10 +126,13 @@ def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_too
         app_id = '_app_id__{}__{}__app_id_'.format(os.path.dirname(os.path.abspath(__file__)), os.getpid()) # arbitrary string
     
 
+def set_app_id(app_id):
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+    
   
-def set_tool_bar_image_to_match_iconimage_if_exists(file_obj, want_duplicate_apps_to_stack_in_toolbar = True ):
+def set_tool_bar_image_to_match_iconphoto_if_exists(file_obj, want_duplicate_apps_to_stack_in_toolbar = True ):
     '''
-        gtu.set_tool_bar_image_to_match_iconimage_if_exists(__file__, want_duplicate_apps_to_stack_in_toolbar = True)       
+        gtu.set_tool_bar_image_to_match_iconphoto_if_exists(__file__, want_duplicate_apps_to_stack_in_toolbar = True)       
     
         If no iconphoto is set, all this does is set the app_id based on input.
     '''  
@@ -134,10 +140,13 @@ def set_tool_bar_image_to_match_iconimage_if_exists(file_obj, want_duplicate_app
     eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
     
     app_id = get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar)
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+    set_app_id(app_id)
     
     
-def set_iconphoto(master, img_path):
+def set_iconphoto_if_not_None(master, img_path):
+    if img_path == None:
+        return 
+    
     eu.error_if_param_type_not_in_whitelist(master, ['tkinter.Tk', 'tkinter.Toplevel'])
     eu.error_if_not_is_file(img_path)
     
