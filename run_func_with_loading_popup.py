@@ -20,6 +20,7 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             
             self.bounce_speed = bounce_speed
             self.pb_length = pb_length
+            print('self.pb_length: ', self.pb_length)
       
             self.msg_lbl = Label(top, text=msg)
             self.msg_lbl.pack(padx = 10, pady = 5)
@@ -103,9 +104,9 @@ if __name__ == '__main__':
     bounc_speed = 9
     pb_length = 200
     window_title = "Wait"
-    photo_img_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
+#     photo_img_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
         
-    r = run_func_with_loading_popup(lambda: task('joe'), msg, window_title, bounc_speed, pb_length, photo_img_path)
+    r = run_func_with_loading_popup(lambda: task('joe'), msg, window_title, bounc_speed, pb_length)
 
     print('return of test: ', r)    
      

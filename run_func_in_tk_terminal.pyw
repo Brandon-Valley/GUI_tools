@@ -233,10 +233,10 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
     func()
 
     
-    input()
-    Restore_stdout()
-    print('stdout back to original')
-    
+#     input()
+#     Restore_stdout()
+#     print('stdout back to original')
+#     
     Dbg_kill_topwin()
         
     
