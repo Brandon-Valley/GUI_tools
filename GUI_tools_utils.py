@@ -121,9 +121,11 @@ def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_too
     eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
         
     if want_duplicate_apps_to_stack_in_toolbar:
-        return '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
+        raw =  '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
     else:
-        app_id = '_app_id__{}__{}__app_id_'.format(os.path.dirname(os.path.abspath(__file__)), os.getpid()) # arbitrary string
+        raw = '_app_id__{}__{}__app_id_'.format(os.path.dirname(os.path.abspath(__file__)), os.getpid()) # arbitrary string
+    
+    return raw.replace('\\', '//')
     
 
 def set_app_id(app_id):
