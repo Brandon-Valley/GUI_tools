@@ -24,6 +24,9 @@ import sys
 import os
 import ctypes
 
+from tkinter.ttk import *
+from tkinter import *
+
 
 
 
@@ -134,7 +137,12 @@ def set_tool_bar_image_to_match_iconimage_if_exists(file_obj, want_duplicate_app
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
     
     
+def set_iconphoto(master, img_path):
+    eu.error_if_param_type_not_in_whitelist(master, ['tkinter.Tk', 'tkinter.Toplevel'])
+    eu.error_if_not_is_file(img_path)
     
+    photo_img = PhotoImage(file = img_path)
+    master.iconphoto(master, photo_img)
     
     
     
