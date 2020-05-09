@@ -64,12 +64,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
     
     
     
-    
-    
-    
-    
-    
-    
     class DbgText:
         Dbgtopwin=None
         Dbgwidget=None
@@ -118,32 +112,12 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
                             DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
                         
                         
-                        
-                        
-                        # set iconphoto if given a photo_img
-#                         if photo_img != None:
-#                             # sets tool bar icon to be the same as iconphoto
-#                             myappid = 'mycompany.myproduct.subproduct.version2' # arbitrary string
-#                             ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-#                             
-# #         #                     photo_img_rel_path = "imgs/git.png"
-# #         #                     photo_img_abs_path = os.path.dirname(os.path.abspath(__file__)) + '//' + photo_img_rel_path
-# #                             photo_img_abs_path = "C:\\Users\\mt204e\\Documents\\projects\\Bitbucket_repo_setup\\version_control_scripts\\CE\\imgs\\git.png"
-# #                             pi = PhotoImage(file = photo_img_abs_path)
-#                             DbgText.Dbgtopwin.iconphoto(DbgText.Dbgtopwin, photo_img)
-# #                             DbgText.Dbgtopwin.iconphoto(canvas, photo_img)
-                        
-#                         DbgText.Dbgtopwin.iconphoto()
-                        
                         DbgText.Dbgtopwin.protocol('WM_DELETE_WINDOW',Dbg_kill_topwin)
                         DbgText.Dbgwidget=tkinter.Text(DbgText.Dbgtopwin, background = "black", foreground = 'white')
                         DbgText.Dbgwidget.pack(expand=1)
                     top=DbgText.Dbgtopwin
                     wid=DbgText.Dbgwidget
                     
-                    
-                    
-
                     
                 else:
                     if self.widget == None:
@@ -219,7 +193,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
         Restore_stderr()
     
             
-    
 
     Take_stdout()
     
@@ -231,12 +204,7 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
     
     # depending on the function, you may never get past this func
     func()
-
     
-#     input()
-#     Restore_stdout()
-#     print('stdout back to original')
-#     
     Dbg_kill_topwin()
         
     
@@ -244,8 +212,6 @@ def run_func_in_tk_terminal(func, photo_img_path = None, parent_gui_pid_l_json_p
 if __name__ == '__main__':
     import setup_new_repo
     repo_type = 'IP'
-    # local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_2_CE4"
-    #     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_2_CE4 - Copy (2)"
     local_ip_repo_dir_path = "C:\\Users\\mt204e\\Documents\\test_ip_repo_3"
     repo_remote_url = 'https://ba-bit.web.boeing.com/scm/mnfcf/tsm15.git'
     
