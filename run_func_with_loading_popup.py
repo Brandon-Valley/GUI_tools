@@ -20,7 +20,6 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
             
             self.bounce_speed = bounce_speed
             self.pb_length = pb_length
-            print('self.pb_length: ', self.pb_length)
       
             self.msg_lbl = Label(top, text=msg)
             self.msg_lbl.pack(padx = 10, pady = 5)
