@@ -26,8 +26,12 @@ DIGITS = '0123456789.-'
 
 
 class Tab():
-    def __init__(self, master):
-        self.master = master
+    def __init__(self, master, tab_control = None, photo_img_path = None, app_id = None):
+        self.master         = master
+        self.tab_control    = tab_control
+        self.photo_img_path = photo_img_path
+        self.app_id         = app_id
+        
         self.tabs = None
         self.widget_str_var_d = {}
         

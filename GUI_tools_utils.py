@@ -1,4 +1,5 @@
 import sys
+import os
 
 # self.duration: 72 --> '1:12'
 def sec_to_min_str(total_sec):
@@ -41,7 +42,8 @@ def center_window(win, og_w = None, og_h = None):
     except:
         pass
     
-
+    
+# this probably dosn't work
 # runs given func and prints any stderr, works on subprocess calls
 def print_stderr(func):
     def eprint(*args, **kwargs):
@@ -49,7 +51,19 @@ def print_stderr(func):
         
     eprint(func())
         
-        
-        
+
+# gtu.get_app_id_unique_to_this_file(__file__)        
+def get_app_id_unique_to_this_file(file_obj):
+    return '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
         
