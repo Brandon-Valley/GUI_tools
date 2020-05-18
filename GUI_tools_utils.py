@@ -124,8 +124,14 @@ def set_iconphoto_if_not_None(master, img_path):
     eu.error_if_param_type_not_in_whitelist(master, ['tkinter.Tk', 'tkinter.Toplevel'])
 #     eu.error_if_not_is_file(img_path)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
     
-    photo_img = PhotoImage(file = img_path)
-    master.iconphoto(master, photo_img)
+    img_path_ext = os.path.splitext(img_path)[1]
+    
+    if img_path_ext == '.ico':
+        master.iconbitmap(img_path)
+    else:    
+        photo_img = PhotoImage(file = img_path)
+        master.iconphoto(master, photo_img)
+
     
 
 def set_child_tk_gui_iconphoto_and_app_id(master, photo_img_path, app_id):
