@@ -136,7 +136,10 @@ def set_iconphoto_if_not_None(master, img_path):
 
 def set_child_tk_gui_iconphoto_and_app_id(master, photo_img_path, app_id):
     '''
-        Parent GUI does not need to pass it's photo_img_path if it passes it's app_id
+        Parent GUI does not need to pass it's photo_img_path if it passes it's app_id - ONLY IF USING ICONPHOTO (png)
+        
+        can work with either .png or .ico, but if you use a .ico, you need to pass the photo_img_path down to all sub-guis,
+        no clue why but will only inherit iconphoto (png), not iconbitmap(ico) from gui with same app_id  
     '''
     
     if photo_img_path != None:
