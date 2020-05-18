@@ -4,7 +4,10 @@ from tkinter import *
 import os
 sys.path.insert(1, os.path.join(sys.path[0], '..')) # to import from parent dir
 #from parent_dir
-import GUI_tools_utils
+if __name__ == '__main__':
+    import        util_tools as ut
+else:
+    from . import util_tools as ut
 
 
 
@@ -42,9 +45,9 @@ class Trim_WG():
                 elif which_scale_moving.get() == 'end_scale':
                     self.end_scale.set(self.start_scale.get() + min_diff)
                     
-            start_scale_time_str.set(GUI_tools_utils.sec_to_min_str(start_val.get()))
-            end_scale_time_str.set(GUI_tools_utils.sec_to_min_str(end_val.get()))
-            diff_time_str.set(diff_leading_txt + GUI_tools_utils.sec_to_min_str(end_val.get() - start_val.get()))
+            start_scale_time_str.set(ut.sec_to_min_str(start_val.get()))
+            end_scale_time_str.set(ut.sec_to_min_str(end_val.get()))
+            diff_time_str.set(diff_leading_txt + ut.sec_to_min_str(end_val.get() - start_val.get()))
     
         
         # set scales
@@ -66,9 +69,9 @@ class Trim_WG():
         
 
         
-        start_scale_time_str.set(GUI_tools_utils.sec_to_min_str(start_val.get()))
-        end_scale_time_str.set(GUI_tools_utils.sec_to_min_str(end_val.get()))
-        diff_time_str.set(diff_leading_txt + GUI_tools_utils.sec_to_min_str(end_val.get() - start_val.get()))
+        start_scale_time_str.set(ut.sec_to_min_str(start_val.get()))
+        end_scale_time_str.set(ut.sec_to_min_str(end_val.get()))
+        diff_time_str.set(diff_leading_txt + ut.sec_to_min_str(end_val.get() - start_val.get()))
         
         self.start_lbl = Label(master, textvariable=start_scale_time_str)   # labels that will update
         self.end_lbl   = Label(master, textvariable=end_scale_time_str) # with IntVars as start_scale moves
