@@ -3,7 +3,11 @@ import tkinter.ttk as ttk
 import threading
 import ctypes
 
-import GUI_tools_utils as gtu
+
+if __name__ == '__main__':
+    import        GUI_tools_utils as gtu
+else:
+    from . import GUI_tools_utils as gtu
 
 
 

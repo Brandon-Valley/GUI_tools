@@ -8,7 +8,11 @@ import ctypes
 import os
 import json
 
-import GUI_tools_utils
+
+if __name__ == '__main__':
+    import        GUI_tools_utils as gtu
+else:
+    from . import GUI_tools_utils as gtu
 
 
 

@@ -7,9 +7,9 @@ from tkinter import *
 
 
 if __name__ == "__main__": 
-    from   usms.exception_utils   import exception_utils   as eu
+    from   usms.exception_utils import exception_utils as eu 
 else:
-    from . usms.exception_utils   import exception_utils   as eu
+    from . usms.exception_utils import exception_utils as eu
 
 
 # self.duration: 72 --> '1:12'
