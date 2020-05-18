@@ -79,7 +79,6 @@ def run_func_with_loading_popup(func, msg, window_title = None, bounce_speed = 8
     else:
         root = Toplevel() 
     
-    print('!!!!!!!!!!!!!! in run_func_with pbar, about to set iconphoto: photo_img_path, app_id', photo_img_path, app_id)#1`````````````````````````````````````
     gtu.set_child_tk_gui_iconphoto_and_app_id(root, photo_img_path, app_id)
     
     # call Main_Frame class with reference to root as top
