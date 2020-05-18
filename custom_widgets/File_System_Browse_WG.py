@@ -1,9 +1,7 @@
 from tkinter.ttk import *
 from tkinter import *
-
 from tkinter import filedialog 
 
-import sys, os
 
 
 class File_System_Browse_WG():
@@ -35,8 +33,18 @@ class File_System_Browse_WG():
         self.tb.bind('<Leave>' , xview_event_handler)#scrolls text to end if needed
         self.tb.bind('<FocusIn>' , xview_event_handler)#scrolls text to end if needed
         
+        
         if tb_edit_func != None:
-            temp_tab.bind_to_edit(self.tb, tb_edit_func)
+            
+            # make sure this matches bind_to_edit in Tab
+            def bind_to_edit(self, widget, func):
+                widget.bind("<KeyRelease>", func)
+                widget.bind("<KeyRelease-BackSpace>", func)
+                widget.bind("<KeyRelease-Delete>", func)
+                widget.bind("<KeyRelease-space>", func)  
+            
+            bind_to_edit(self.tb, tb_edit_func)
+            
 
         # browse btn
         def browse_btn_clk():

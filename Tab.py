@@ -1,28 +1,24 @@
-# from tkinter import END
-# from tkinter import filedialog
 from tkinter import *
-
-
-
-# import GUI #only need for testing
-
 import sys
 import os
-sys.path.insert(1, os.path.dirname(__file__)) # so you can import relative to this file even when it is called from elsewhere
 
-from widget_groups import File_System_Browse_WG
-from widget_groups import Font_Config_WG
-from widget_groups import Color_Select_WG
-from widget_groups import Trim_WG
-
-import Tool_Tip
-
-
-
+if __name__ == '__main__':
+    from   custom_widgets import File_System_Browse_WG
+    from   custom_widgets import Font_Config_WG
+    from   custom_widgets import Color_Select_WG
+    from   custom_widgets import Trim_WG
+    import                       Tool_Tip
+else:
+    from . custom_widgets import File_System_Browse_WG
+    from . custom_widgets import Font_Config_WG
+    from . custom_widgets import Color_Select_WG
+    from . custom_widgets import Trim_WG
+    from .                import Tool_Tip    
 
 
 
 DIGITS = '0123456789.-'
+
 
 
 class Tab():
