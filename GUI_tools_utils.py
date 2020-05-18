@@ -62,8 +62,8 @@ def rel_path_to_this_file__to__abs_path__if_not_None(file_obj, rel_path):
     if rel_path == None:
         return None
     
-    eu.error_if_not__file__(file_obj)
-    eu.error_if_not_is_file(rel_path)
+#     eu.error_if_not__file__(file_obj)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
+#     eu.error_if_not_is_file(rel_path)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
     
     return os.path.dirname(os.path.abspath(file_obj)) + '//' + rel_path
         
@@ -89,7 +89,7 @@ def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_too
         if 2 GUIs use the same iconphoto, but have different app_ids, they will show as 2 different applications in the tool bar,
         if they use the same app_id, their application windows will stack in the tool bar 
     '''
-    eu.error_if_not__file__(file_obj)
+#     eu.error_if_not__file__(file_obj) # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
     eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
         
     if want_duplicate_apps_to_stack_in_toolbar:
@@ -110,7 +110,7 @@ def set_tool_bar_image_to_match_iconphoto_if_exists(file_obj, want_duplicate_app
     
         If no iconphoto is set, all this does is set the app_id based on input.
     '''  
-    eu.error_if_not__file__(file_obj)
+#     eu.error_if_not__file__(file_obj)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
     eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
     
     app_id = get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar)
