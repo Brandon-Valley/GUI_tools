@@ -37,7 +37,7 @@ class File_System_Browse_WG():
         if tb_edit_func != None:
             
             # make sure this matches bind_to_edit in Tab
-            def bind_to_edit(self, widget, func):
+            def bind_to_edit(widget, func):
                 widget.bind("<KeyRelease>", func)
                 widget.bind("<KeyRelease-BackSpace>", func)
                 widget.bind("<KeyRelease-Delete>", func)
