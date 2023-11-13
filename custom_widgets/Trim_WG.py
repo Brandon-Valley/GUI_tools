@@ -2,6 +2,7 @@ from tkinter.ttk import *
 from tkinter import *
 
 import os
+import sys
 sys.path.insert(1, os.path.join(sys.path[0], '..')) # to import from parent dir
 #from parent_dir
 if __name__ == '__main__':
