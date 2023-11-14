@@ -1,12 +1,12 @@
 from tkinter.ttk import *
 from tkinter import *
-from tkinter import filedialog
+# from . File_System_Browse_WG import File_System_Browse_WG
 
-# import GUI_tools.custom_widgets.File_System_Browse_WG
-# import custom_widgets.File_System_Browse_WG
+if __name__ == '__main__':
+    from File_System_Browse_WG import File_System_Browse_WG
+else:
+    from . File_System_Browse_WG import File_System_Browse_WG
 
-        # from custom_widgets.File_System_Browse_WG import File_System_Browse_WG
-from . File_System_Browse_WG import File_System_Browse_WG
 
 class Write_Parent_Dir_File_Name_WG():
     def __init__(
@@ -22,7 +22,8 @@ class Write_Parent_Dir_File_Name_WG():
             focus_parent_dir_tb_after_browse = False,
             browse_btn_txt = 'Browse...',
             parent_dir_tb_edit_func = None,# FIX?
-            file_path_tb_edit_func = None,# FIX?
+            file_path_tb_edit_func = None,# FIX? - rename
+            write_file_path_lbl_prefix = "Output will be written to: ",# FIX?
         ):
 
         # Parent Dir File_System_Browse_WG
@@ -42,7 +43,15 @@ class Write_Parent_Dir_File_Name_WG():
         self.parent_dir_tb  = parent_dir_fsb_wg.tb
         self.btn = parent_dir_fsb_wg.btn
 
+        ################################################################################################################
         # File Name Widgets
+        ################################################################################################################
+        def _file_name_tb_updated(event=None):
+            _update_write_file_path_lbl()
+
+            if file_path_tb_edit_func:
+                file_path_tb_edit_func()
+
         self.file_name_lbl = Label(master, text = file_name_lbl_txt)
         self.file_name_tb = Entry(master, width=file_name_tb_width)
 
@@ -57,41 +66,30 @@ class Write_Parent_Dir_File_Name_WG():
         self.file_name_tb.bind('<FocusIn>' , xview_event_handler) # scrolls text to end if needed
 
 
-        if file_path_tb_edit_func != None:
+        # if file_path_tb_edit_func != None:
 
-            # Make sure this matches bind_to_edit in Tab
-            def bind_to_edit(widget, func):
-                widget.bind("<KeyRelease>", func)
-                widget.bind("<KeyRelease-BackSpace>", func)
-                widget.bind("<KeyRelease-Delete>", func)
-                widget.bind("<KeyRelease-space>", func)
+        # Make sure this matches bind_to_edit in Tab
+        def bind_to_edit(widget, func):
+            widget.bind("<KeyRelease>", func)
+            widget.bind("<KeyRelease-BackSpace>", func)
+            widget.bind("<KeyRelease-Delete>", func)
+            widget.bind("<KeyRelease-space>", func)
 
-            bind_to_edit(self.file_name_tb, file_path_tb_edit_func)
+        bind_to_edit(self.file_name_tb, _file_name_tb_updated)
 
+    
+        ################################################################################################################
+        # File Path Widgets
+        ################################################################################################################
+        # self.write_file_path_lbl = Label(master, text = write_file_path_lbl_prefix)
+        self.write_file_path_lbl = Label(master, text = "HITHERE")
 
-    # # should not be used outside this file
-    # def path_tb_browse_btn_clk(self, path_txt_box_widget, browse_for, file_type = None):
-    #     #get file path and place it in text box
+        def _update_write_file_path_lbl():
+            # self.write_file_path_lbl.insert(END, write_file_path_lbl_prefix + self.parent_dir_tb.get() + "/" + self.file_name_tb.get())
+            write_file_path = write_file_path_lbl_prefix + self.parent_dir_tb.get() + "/" + self.file_name_tb.get()
+            self.write_file_path_lbl = Label(master, text = write_file_path)
 
-    #     if browse_for == 'file':
-    #         if file_type == None:
-    #             file_system_item = filedialog.askopenfilename()
-
-    #         else:
-    #             file_system_item = filedialog.askopenfilename(filetypes = (("Images", "*" + file_type), ("All files", "*")))#filetypes = (("Images", '*.png|*.jpg'), ("All files", "*")))#"*" + file_types   #,("Template files", '*.jpg'),
-    #     elif browse_for == 'dir':
-    #         file_system_item = filedialog.askdirectory()
-    #     else:
-    #         raise Exception('ERROR:  In Tab.py, in path_tb_browse_btn_clk, invalid value for browse_for: ', browse_for)
-
-    #     if len(file_system_item) != 0: # so if you X out of browse, you dont lose the path you started with
-    #         path_txt_box_widget.delete(0, "end")
-    #         path_txt_box_widget.insert(END, file_system_item)
-
-
-
-
-
+        _update_write_file_path_lbl()
 
 def xview_event_handler(e):
     e.widget.update_idletasks()
@@ -101,9 +99,10 @@ def xview_event_handler(e):
 
 if __name__ == '__main__':
     import os
-    sys.path.insert(1, os.path.join(sys.path[0], '..\\..')) # to import from parent dir
+    import sys
+    sys.path.insert(1, os.path.join(sys.path[0], '..\\..\\..')) # to import from parent dir
     #from parent dir
-    import GUI
-    GUI.main()
+    import gui
+    gui.main()
 
 

@@ -206,9 +206,10 @@ class Tab():
                                         focus_parent_dir_tb_after_browse = False,
                                         browse_btn_txt = 'Browse...',
                                         parent_dir_tb_edit_func = None,
-                                        file_path_tb_edit_func = None):
+                                        file_path_tb_edit_func = None,
+                                        write_file_path_lbl_prefix = "Output will be written to: "):
         
-        return Write_Parent_Dir_File_Name_WG.Write_Parent_Dir_File_Name_WG(master, parent_dir_lbl_txt, file_name_lbl_txt, parent_dir_tb_width, file_name_tb_width, init_parent_dir_path_str, init_file_name, write_file_path_updated_func, focus_parent_dir_tb_after_browse, browse_btn_txt, parent_dir_tb_edit_func, file_path_tb_edit_func)
+        return Write_Parent_Dir_File_Name_WG.Write_Parent_Dir_File_Name_WG(master, parent_dir_lbl_txt, file_name_lbl_txt, parent_dir_tb_width, file_name_tb_width, init_parent_dir_path_str, init_file_name, write_file_path_updated_func, focus_parent_dir_tb_after_browse, browse_btn_txt, parent_dir_tb_edit_func, file_path_tb_edit_func, write_file_path_lbl_prefix)
         
 
 
