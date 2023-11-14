@@ -23,7 +23,7 @@ class Write_Parent_Dir_File_Name_WG():
             browse_btn_txt = 'Browse...',
             parent_dir_tb_edit_func = None,# FIX?
             file_path_tb_edit_func = None,# FIX? - rename
-            write_file_path_lbl_prefix = "Output will be written to: ",# FIX?
+            write_file_path_descrip_lbl_text = "Output will be written to:",# FIX?
         ):
 
         def _parent_dir_path_tb_updated(event=None):
@@ -84,12 +84,15 @@ class Write_Parent_Dir_File_Name_WG():
         ################################################################################################################
         # File Path Widgets
         ################################################################################################################
+        self.write_file_path_descrip_lbl = Label(master, text = write_file_path_descrip_lbl_text)
+
+
         write_file_path_str_var= StringVar()
         self.write_file_path_lbl = Label(master, textvariable = write_file_path_str_var)
 
         def _update_write_file_path_lbl():
             print("_update_write_file_path_lbl")
-            self.write_file_path_str = write_file_path_lbl_prefix + self.parent_dir_tb.get() + "\\" + self.file_name_tb.get()
+            self.write_file_path_str = self.parent_dir_tb.get() + "\\" + self.file_name_tb.get()
             write_file_path_str_var.set(self.write_file_path_str)
 
         _update_write_file_path_lbl()
