@@ -4,12 +4,14 @@ import os
 
 if __name__ == '__main__':
     from   custom_widgets import File_System_Browse_WG
+    from   custom_widgets import Write_Parent_Dir_File_Name_WG
     from   custom_widgets import Font_Config_WG
     from   custom_widgets import Color_Select_WG
     from   custom_widgets import Trim_WG
     import                       Tool_Tip
 else:
     from . custom_widgets import File_System_Browse_WG
+    from . custom_widgets import Write_Parent_Dir_File_Name_WG
     from . custom_widgets import Font_Config_WG
     from . custom_widgets import Color_Select_WG
     from . custom_widgets import Trim_WG
@@ -190,8 +192,26 @@ class Tab():
         
         return File_System_Browse_WG.File_System_Browse_WG(master, lbl_txt, tb_width, browse_for, file_type, init_path, focus_tb_after_browse, tb_edit_func, browse_btn_txt)
         
+
+
+    def Write_Parent_Dir_File_Name_WG(  self,
+                                        master,
+                                        parent_dir_lbl_txt,
+                                        file_name_lbl_txt,
+                                        parent_dir_tb_width = None,
+                                        file_name_tb_width = None,
+                                        init_parent_dir_path_str = None,
+                                        init_file_name = None,
+                                        write_file_path_updated_func = None,
+                                        focus_parent_dir_tb_after_browse = False,
+                                        browse_btn_txt = 'Browse...',
+                                        parent_dir_tb_edit_func = None,
+                                        file_path_tb_edit_func = None):
         
+        return Write_Parent_Dir_File_Name_WG.Write_Parent_Dir_File_Name_WG(master, parent_dir_lbl_txt, file_name_lbl_txt, parent_dir_tb_width, file_name_tb_width, init_parent_dir_path_str, init_file_name, write_file_path_updated_func, focus_parent_dir_tb_after_browse, browse_btn_txt, parent_dir_tb_edit_func, file_path_tb_edit_func)
         
+
+
     def Font_Config_WG(  self,
                          master,
                          fonts_dir_path         = None, 
