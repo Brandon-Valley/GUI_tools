@@ -27,16 +27,16 @@ class Write_Parent_Dir_File_Name_WG():
 
         # Parent Dir File_System_Browse_WG
         parent_dir_fsb_wg = File_System_Browse_WG(
-            master = master,
-            lbl_txt = parent_dir_lbl_txt, 
-            tb_width = parent_dir_tb_width, 
-            browse_for = 'dir',  # 'dir' or 'file'
-            file_type = None,    # '.jpg', '.mp4', etc...
-            init_path = init_parent_dir_path_str, 
-            focus_tb_after_browse = focus_parent_dir_tb_after_browse,
-            tb_edit_func = parent_dir_tb_edit_func, #FIX?
-            browse_btn_txt = browse_btn_txt
-        )
+                                                    master = master,
+                                                    lbl_txt = parent_dir_lbl_txt, 
+                                                    tb_width = parent_dir_tb_width, 
+                                                    browse_for = 'dir',  # 'dir' or 'file'
+                                                    file_type = None,    # '.jpg', '.mp4', etc...
+                                                    init_path = init_parent_dir_path_str, 
+                                                    focus_tb_after_browse = focus_parent_dir_tb_after_browse,
+                                                    tb_edit_func = parent_dir_tb_edit_func, #FIX?
+                                                    browse_btn_txt = browse_btn_txt
+                                                )
 
         self.parent_dir_lbl = parent_dir_fsb_wg.lbl
         self.parent_dir_tb  = parent_dir_fsb_wg.tb
