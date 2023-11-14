@@ -26,6 +26,12 @@ class Write_Parent_Dir_File_Name_WG():
             write_file_path_lbl_prefix = "Output will be written to: ",# FIX?
         ):
 
+        def _parent_dir_path_tb_updated(event=None):
+            _update_write_file_path_lbl()
+
+            if parent_dir_tb_edit_func:
+                parent_dir_tb_edit_func()
+
         # Parent Dir File_System_Browse_WG
         parent_dir_fsb_wg = File_System_Browse_WG(
                                                     master = master,
@@ -35,7 +41,7 @@ class Write_Parent_Dir_File_Name_WG():
                                                     file_type = None,    # '.jpg', '.mp4', etc...
                                                     init_path = init_parent_dir_path_str, 
                                                     focus_tb_after_browse = focus_parent_dir_tb_after_browse,
-                                                    tb_edit_func = parent_dir_tb_edit_func, #FIX?
+                                                    tb_edit_func = _parent_dir_path_tb_updated, #FIX?
                                                     browse_btn_txt = browse_btn_txt
                                                 )
 
@@ -65,9 +71,6 @@ class Write_Parent_Dir_File_Name_WG():
         self.file_name_tb.bind('<Leave>' , xview_event_handler)   # scrolls text to end if needed
         self.file_name_tb.bind('<FocusIn>' , xview_event_handler) # scrolls text to end if needed
 
-
-        # if file_path_tb_edit_func != None:
-
         # Make sure this matches bind_to_edit in Tab
         def bind_to_edit(widget, func):
             widget.bind("<KeyRelease>", func)
@@ -81,13 +84,13 @@ class Write_Parent_Dir_File_Name_WG():
         ################################################################################################################
         # File Path Widgets
         ################################################################################################################
-        # self.write_file_path_lbl = Label(master, text = write_file_path_lbl_prefix)
-        self.write_file_path_lbl = Label(master, text = "HITHERE")
+        write_file_path_str_var= StringVar()
+        self.write_file_path_lbl = Label(master, textvariable = write_file_path_str_var)
 
         def _update_write_file_path_lbl():
-            # self.write_file_path_lbl.insert(END, write_file_path_lbl_prefix + self.parent_dir_tb.get() + "/" + self.file_name_tb.get())
-            write_file_path = write_file_path_lbl_prefix + self.parent_dir_tb.get() + "/" + self.file_name_tb.get()
-            self.write_file_path_lbl = Label(master, text = write_file_path)
+            print("_update_write_file_path_lbl")
+            self.write_file_path_str = write_file_path_lbl_prefix + self.parent_dir_tb.get() + "\\" + self.file_name_tb.get()
+            write_file_path_str_var.set(self.write_file_path_str)
 
         _update_write_file_path_lbl()
 
