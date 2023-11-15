@@ -84,6 +84,7 @@ class Write_Parent_Dir_File_Name_WG():
         ################################################################################################################
         # File Path Widgets
         ################################################################################################################
+        self.write_file_path_str = None
         self.write_file_path_descrip_lbl = Label(master, text = write_file_path_descrip_lbl_text)
 
 
