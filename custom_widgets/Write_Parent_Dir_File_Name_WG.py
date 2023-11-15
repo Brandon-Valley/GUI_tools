@@ -94,6 +94,9 @@ class Write_Parent_Dir_File_Name_WG():
             print("_update_write_file_path_lbl")
             self.write_file_path_str = self.parent_dir_tb.get() + "\\" + self.file_name_tb.get()
             write_file_path_str_var.set(self.write_file_path_str)
+            
+            if write_file_path_updated_func:
+                write_file_path_updated_func()
 
         _update_write_file_path_lbl()
 
