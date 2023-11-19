@@ -1,3 +1,0 @@
-[submodule "usms/logger"]
-	path = usms/logger
-	url = https://github.com/Brandon-Valley/logger.git
