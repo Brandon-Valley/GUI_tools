@@ -5,14 +5,6 @@ import ctypes
 from tkinter.ttk import *
 from tkinter import *
 
-
-if __name__ == "__main__": 
-    from   usms.exception_utils import exception_utils as eu 
-else:
-    from . usms.exception_utils import exception_utils as eu
-
-
-
 # win = master
 # really quick and dirty
 def center_window(win, og_w = None, og_h = None):
