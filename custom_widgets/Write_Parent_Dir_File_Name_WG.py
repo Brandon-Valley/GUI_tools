@@ -21,9 +21,9 @@ class Write_Parent_Dir_File_Name_WG():
             write_file_path_updated_func = None,
             focus_parent_dir_tb_after_browse = False,
             browse_btn_txt = 'Browse...',
-            parent_dir_tb_edit_func = None,# FIX?
-            file_path_tb_edit_func = None,# FIX? - rename
-            write_file_path_descrip_lbl_text = "Output will be written to:",# FIX?
+            parent_dir_tb_edit_func = None,
+            file_path_tb_edit_func = None,
+            write_file_path_descrip_lbl_text = "Output will be written to:",
         ):
 
         def _parent_dir_path_tb_updated(event=None):
@@ -41,7 +41,7 @@ class Write_Parent_Dir_File_Name_WG():
                                                     file_type = None,    # '.jpg', '.mp4', etc...
                                                     init_path = init_parent_dir_path_str, 
                                                     focus_tb_after_browse = focus_parent_dir_tb_after_browse,
-                                                    tb_edit_func = _parent_dir_path_tb_updated, #FIX?
+                                                    tb_edit_func = _parent_dir_path_tb_updated,
                                                     browse_btn_txt = browse_btn_txt
                                                 )
 
