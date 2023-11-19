@@ -53,10 +53,7 @@ def rel_path_to_this_file__to__abs_path__if_not_None(file_obj, rel_path):
     '''
     if rel_path == None:
         return None
-    
-#     eu.error_if_not__file__(file_obj)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
-#     eu.error_if_not_is_file(rel_path)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
-    
+
     return os.path.dirname(os.path.abspath(file_obj)) + '//' + rel_path
         
         
@@ -81,8 +78,7 @@ def get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_too
         if 2 GUIs use the same iconphoto, but have different app_ids, they will show as 2 different applications in the tool bar,
         if they use the same app_id, their application windows will stack in the tool bar 
     '''
-#     eu.error_if_not__file__(file_obj) # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
-    eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
+    assert type(want_duplicate_apps_to_stack_in_toolbar) == bool, type(want_duplicate_apps_to_stack_in_toolbar)
         
     if want_duplicate_apps_to_stack_in_toolbar:
         raw =  '_app_id__' + os.path.dirname(os.path.abspath(file_obj)) + '__app_id_' # arbitrary string
@@ -102,8 +98,8 @@ def set_tool_bar_image_to_match_iconphoto_if_exists(file_obj, want_duplicate_app
     
         If no iconphoto is set, all this does is set the app_id based on input.
     '''  
-#     eu.error_if_not__file__(file_obj)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
-    eu.error_if_param_type_not_in_whitelist(want_duplicate_apps_to_stack_in_toolbar, ['bool'])
+    assert type(want_duplicate_apps_to_stack_in_toolbar) == bool, type(want_duplicate_apps_to_stack_in_toolbar)
+
     
     app_id = get_app_id_unique_to_this_file(file_obj, want_duplicate_apps_to_stack_in_toolbar)
     set_app_id(app_id)
@@ -113,9 +109,8 @@ def set_iconphoto_if_not_None(master, img_path):
     if img_path == None:
         return 
     
-    eu.error_if_param_type_not_in_whitelist(master, ['tkinter.Tk', 'tkinter.Toplevel'])
-#     eu.error_if_not_is_file(img_path)  # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
-    
+    assert type(master) in [Tk, Toplevel], type(master)
+
     img_path_ext = os.path.splitext(img_path)[1]
     
     if img_path_ext == '.ico':
@@ -135,9 +130,9 @@ def set_child_tk_gui_iconphoto_and_app_id(master, photo_img_path, app_id):
     '''
     
     if photo_img_path != None:
-#         eu.error_if_not_is_file(photo_img_path) # this broke when tried to make into an app:  ERROR: Can't be __file__ Because File Does Not Exist:  "C:\projects\version_control_scripts\CE\app\dist\main\GUI.pyc" must point to an existing file.
         pass
-    eu.error_if_param_type_not_in_whitelist(app_id, ['str', 'NoneType'])
+    assert type(app_id) in [str, type(None)]== bool, type(app_id)
+
     
     if app_id != None:
         set_app_id(app_id)
