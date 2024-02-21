@@ -8,6 +8,7 @@ if __name__ == '__main__':
     from   custom_widgets import Font_Config_WG
     from   custom_widgets import Color_Select_WG
     from   custom_widgets import Trim_WG
+    from   custom_widgets import Show_Logs_Button
     import                       Tool_Tip
 else:
     from . custom_widgets import File_System_Browse_WG
@@ -15,6 +16,7 @@ else:
     from . custom_widgets import Font_Config_WG
     from . custom_widgets import Color_Select_WG
     from . custom_widgets import Trim_WG
+    from . custom_widgets import Show_Logs_Button
     from .                import Tool_Tip    
 
 
@@ -278,8 +280,15 @@ class Tab():
                              self.set_var,
                              self.bind_to_update)
         return wg        
-     
+
+
+    def Show_Logs_Button( self,
+                 master, 
+                 log_file_path,
+                 cnf = None):
+        return Show_Logs_Button.Show_Logs_Button(master, log_file_path, cnf)
         
+
         
 if __name__ == '__main__':
     import os
